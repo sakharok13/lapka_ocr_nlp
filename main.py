@@ -1,4 +1,5 @@
 from ocr import recognize_text
+from inference import *
 
 
 def main(path_to_image, ocr_model):
@@ -17,3 +18,4 @@ def main(path_to_image, ocr_model):
     ### OCR PART ###
     text = recognize_text(path_to_image, ocr_model)
     ### NER PART ### ....
+    return get_predictions(text, model)

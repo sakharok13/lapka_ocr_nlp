@@ -34,11 +34,11 @@ def tokenize_and_align_labels(examples, label_all_tokens=True):
     return tokenized_inputs
 
 
-from transformers import AutoModelForTokenClassification, TrainingArguments, Trainer, AutoTokenizer
-
-model = AutoModelForTokenClassification.from_pretrained("sakharok/lapka", num_labels=len(label_list))
-tokenizer = AutoTokenizer.from_pretrained('DeepPavlov/rubert-base-cased')
-
-model.config.id2label = dict(enumerate(label_list))
-
-model.config.label2id = {v: k for k, v in model.config.id2label.items()}
+from transformers import AutoModelForTokenClassification, AutoTokenizer
+def model():
+    bert = AutoModelForTokenClassification.from_pretrained("sakharok/lapka", num_labels=len(label_list))
+    bert.config.id2label = dict(enumerate(label_list))
+    bert.config.label2id = {v: k for k, v in model.config.id2label.items()}
+    return bert
+def tokenizer():
+    return AutoTokenizer.from_pretrained('DeepPavlov/rubert-base-cased')
