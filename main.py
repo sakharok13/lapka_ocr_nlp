@@ -1,8 +1,8 @@
 from ocr import recognize_text
-from inference import *
+from ner import get_predictions
 
 
-def main(path_to_image, ocr_model):
+def main(path_to_image, ocr_model, ner_model, ner_pipeline):
     '''
     Recognize text and classificate words.
 
@@ -11,11 +11,13 @@ def main(path_to_image, ocr_model):
             Path to image
         ocr_model (easyocr.Reader):
             OCR model
-        ...
-    Returns:
-        ...
+        ner_model (torch.nn.Module):
+            NER model
+        ner_pipeline (transformers.pipelines.base.Pipeline):
+            NER pipeline
     '''
     ### OCR PART ###
     text = recognize_text(path_to_image, ocr_model)
-    ### NER PART ### ....
-    return get_predictions(text, model)
+    ### NER PART ###
+    prediction = get_predictions(text, ner_model, ner_pipeline)
+    return prediction
