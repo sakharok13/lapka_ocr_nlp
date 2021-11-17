@@ -13,7 +13,7 @@ pipe = pipeline(model=model,
                 aggregation_strategy='average',
                 device=0)
 
-def get_predictions(txtdata, model, pipe = pipe):
+def get_predictions(data, model, pipe = pipe):
 
   windows, starts = context_windows(data)
   with torch.no_grad():
