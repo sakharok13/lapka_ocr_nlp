@@ -1,10 +1,7 @@
-def context_windows(string, window = 200, stride = 150):
+def context_windows(string, window = 150, stride = 100):
   text = string.split(sep=' ')
 
   windows = []
-
-  assert (len(text) <= window), 'Вызови просто pipe(text)'
-
   start = []
 
   for k in range(len(text) // stride):
@@ -30,7 +27,6 @@ def get_correct_bounds(pipe, windows, starts):
     answers.append(dic)
   return answers
 
-
 def intersects(uni, d):
   if uni['start'] >= d['start'] and uni['start'] <= d['end']:
 
@@ -46,7 +42,6 @@ def intersects(uni, d):
   else:
     return False
 
-
 def get_best_unions(dics, text):
   union = []
 
@@ -58,7 +53,6 @@ def get_best_unions(dics, text):
       else:
         union[-1] = intersects(union[-1], dic)
   for k in union:
-    k['word'] = text[k['start']: k['end']]
-
+    k['word'] = text[k['start'] : k['end']]
+  
   return union
-
