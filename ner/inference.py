@@ -1,8 +1,8 @@
 import torch
+from transformers import pipeline
 
 from .context import get_best_unions, get_correct_bounds, context_windows, intersects
 from .model import model, tokenizer
-from transformers import pipeline
 
 
 def init_ner_model(gpu=True):
