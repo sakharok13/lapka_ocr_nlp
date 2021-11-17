@@ -15,8 +15,6 @@ pipe = pipeline(model=model,
 
 def get_predictions(txtdata, model, pipe = pipe):
 
-  with open(txtdata, 'r') as file:
-    data = file.read().replace('\n', '')
   windows, starts = context_windows(data)
   with torch.no_grad():
     preds = get_best_unions(get_correct_bounds(pipe, windows, starts), data)
@@ -26,4 +24,3 @@ def get_predictions(txtdata, model, pipe = pipe):
     what_to_return.append( (preds[i]['entity_group'], preds[i]['word'], preds[i]['score']) )
   return what_to_return
 
-get_predictions(SOME_TEXT, model)
