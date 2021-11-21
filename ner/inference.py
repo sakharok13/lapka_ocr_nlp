@@ -18,7 +18,7 @@ def init_ner_model(gpu=True):
                     tokenizer=ner_tokenizer,
                     task='ner',
                     aggregation_strategy='average',
-                    device=0)
+                    device=0 if gpu else -1)
     return model, pipe
 
 
